@@ -1,15 +1,15 @@
 import React from 'react';
 import * as Progress from 'react-native-progress';
 import ProgressCircle from 'react-native-progress-circle'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 const SubCategory = (props) => {
     return (
-        <TouchableOpacity style={styles.containerStyle} onPress={() => {
+        <TouchableWithoutFeedback onPress={() => {
             Actions.info();
         }}>
-            <View>
+            <View style={styles.containerStyle}>
                 <View style={styles.titleStyle}>
                     <Text style={styles.titleTextStyle}>{props.titleText}</Text>
                 </View>
@@ -32,7 +32,7 @@ const SubCategory = (props) => {
                     </View>
                 </View>
             </View>
-        </TouchableOpacity >
+        </TouchableWithoutFeedback >
     );
 };
 

@@ -89,15 +89,17 @@ export default class PopupCenter extends Component {
 
 const styles = StyleSheet.create({
     modalStyle: {
-        height: 300,
-        alignItems: "center",
+        height: null,
         width: 280,
-        backgroundColor: "#304C59",
-        shadowRadius: 10
+        alignItems: "center",
+        paddingLeft: 18,
+        paddingRight: 18,
+        paddingBottom: 18,
+        backgroundColor: "#304C59"
     },
     buttonStyle: {
         width: 240,
-        backgroundColor: "'rgba(255,255,255, 0.0)'",
+        backgroundColor: "transparent",
         marginTop: 14,
         marginLeft: 20,
         marginRight: 20,

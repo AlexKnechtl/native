@@ -1,44 +1,47 @@
 import React from 'react';
 import * as Progress from 'react-native-progress';
 import ProgressCircle from 'react-native-progress-circle'
-import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, ImageBackground, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 const Category = (props) => {
     return (
-        <TouchableOpacity   onPress={() => {
-            Actions.category();
-          }}>
-            <ImageBackground
-                source={props.imageUri}
-                resizeMode='cover' style={styles.containerStyle}
-                imageStyle={{ flex: 1 }}>
-                <View>
-                    <View style={styles.titleStyle}>
-                        <Text style={styles.titleTextStyle}>{props.titleText}</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={styles.textStyle}>45% abgeschlossen</Text>
-                            <Progress.Bar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#304C59' />
-                            <Text style={styles.textStyle}>3 Fragen falsch beantwortet</Text>
+        <TouchableWithoutFeedback
+            onPress={() => {
+                Actions.category();
+            }}>
+            <View>
+                <ImageBackground
+                    source={props.imageUri}
+                    resizeMode='cover' style={styles.containerStyle}
+                    imageStyle={{ flex: 1 }}>
+                    <View>
+                        <View style={styles.titleStyle}>
+                            <Text style={styles.titleTextStyle}>{props.titleText}</Text>
                         </View>
-                        <View style={{ flex: 1, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
-                            <ProgressCircle
-                                percent={30}
-                                radius={28}
-                                borderWidth={4}
-                                color="#fff"
-                                shadowColor="#f00"
-                                bgColor="#304C59">
-                                <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>{'30%'}</Text>
-                            </ProgressCircle>
-                            <Text style={{ fontSize: 14, margin: 3, color: "#fff" }}>Erfolgschance</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+                                <Text style={styles.textStyle}>45% abgeschlossen</Text>
+                                <Progress.Bar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#304C59' />
+                                <Text style={styles.textStyle}>3 Fragen falsch beantwortet</Text>
+                            </View>
+                            <View style={{ flex: 1, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
+                                <ProgressCircle
+                                    percent={30}
+                                    radius={28}
+                                    borderWidth={4}
+                                    color="#fff"
+                                    shadowColor="#f00"
+                                    bgColor="#304C59">
+                                    <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>{'30%'}</Text>
+                                </ProgressCircle>
+                                <Text style={{ fontSize: 14, margin: 3, color: "#fff" }}>Erfolgschance</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-            </ImageBackground >
-        </TouchableOpacity>
+                </ImageBackground >
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 

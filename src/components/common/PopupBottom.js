@@ -46,10 +46,10 @@ export default class PopupBottom extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 12, alignSelf: "center", color: "white" }}>
+                <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 8, alignSelf: "center", color: "white" }}>
                     3.5 Private Unfallversicherung
                 </Text>
-                <Text style={{ fontSize: 20, marginTop: 6, marginBottom: 10, alignSelf: "center", color: "white" }}>
+                <Text style={{ fontSize: 20, alignSelf: "center", color: "white" }}>
                     Frage 09 / 11
                 </Text>
             </Modal>
@@ -59,10 +59,13 @@ export default class PopupBottom extends Component {
 
 const styles = StyleSheet.create({
     modalStyle: {
-        height: 150,
-        backgroundColor: "#304C59",
-        shadowRadius: 10,
-        width: screen.width
+        height: null,
+        width: screen.width,
+        paddingTop: 10,
+        paddingBottom: 16,
+        paddingRight: 20,
+        paddingLeft: 20,
+        backgroundColor: "#304C59"
     },
     buttonStyle: {
         backgroundColor: 'rgba(255,255,255, 0.0)',
@@ -72,9 +75,6 @@ const styles = StyleSheet.create({
         paddingRight: 16
     },
     linearLayout: {
-        marginTop: 10,
-        marginLeft: 20,
-        marginRight: 20,
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: 'space-between'
