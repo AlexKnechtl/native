@@ -2,17 +2,20 @@ import React from 'react';
 import * as Progress from 'react-native-progress';
 import ProgressCircle from 'react-native-progress-circle'
 import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const Category = (props) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity   onPress={() => {
+            Actions.category();
+          }}>
             <ImageBackground
                 source={props.imageUri}
                 resizeMode='cover' style={styles.containerStyle}
                 imageStyle={{ flex: 1 }}>
                 <View>
                     <View style={styles.titleStyle}>
-                        <Text style={styles.titleTextStyle}>1 Allgemeine Rechtskunde</Text>
+                        <Text style={styles.titleTextStyle}>{props.titleText}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
@@ -25,8 +28,8 @@ const Category = (props) => {
                                 percent={30}
                                 radius={28}
                                 borderWidth={4}
-                                color="#f00"
-                                shadowColor="#fff"
+                                color="#fff"
+                                shadowColor="#f00"
                                 bgColor="#304C59">
                                 <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>{'30%'}</Text>
                             </ProgressCircle>

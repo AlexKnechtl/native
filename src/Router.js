@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Scene, Router, Stack, Actions } from 'react-native-router-flux';
+import { Scene, Router, Stack } from 'react-native-router-flux';
 import LoginScene from './components/LoginScene';
 import HomeScene from './components/HomeScene';
 import LoadingScene from './components/LoadingScene';
 import QuestionScene from './components/QuestionScene';
+import CategoryScene from './components/CategoryScene';
+import CategoryInfoScene from './components/CategoryInfoScene';
 
 const RouterComponent = () => {
     return (
@@ -16,8 +18,9 @@ const RouterComponent = () => {
                 </Stack>
                 <Stack key="main" hideNavBar>
                     <Scene key="home" component={HomeScene} />
+                    <Scene key="category" component={CategoryScene} />
+                    <Scene key="info" component={CategoryInfoScene} />
                     <Scene key="question" component={QuestionScene} />
-                    <Scene key="login" component={LoginScene} />
                 </Stack>
             </Stack>
         </Router >

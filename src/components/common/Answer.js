@@ -23,7 +23,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         minHeight: 90,
         alignItems: 'center',
-        margin: 20,
+        marginRight: 20,
+        marginLeft: 20,
+        marginTop: 20,
         backgroundColor: '#ffffff',
     }
 });

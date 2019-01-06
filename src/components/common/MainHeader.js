@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from './Button';
 
 //Make a Component
@@ -8,27 +8,25 @@ const MainHeader = (props) => {
         <View style={styles.viewStyle}>
             <View style={styles.linearLayout}>
                 <Image style={styles.imageStyle} source={require('../../img/logo_wko.png')} />
-                <Text style={styles.textStyle}>{props.headerText}</Text>
+                {props.children}
             </View>
             <View style={styles.linearLayout}>
                 <Button
+                    onPress={props.onPressButton}
                     children={props.buttonText}
-                    style={{ backgroundColor: 'rgba(255,255,255, 0.0)', width: 240, marginLeft: 20, marginRight: 20, borderColor: '#fff4', borderWidth: 2, paddingLeft: 20, paddingRight: 20 }}>
+                    style={{ backgroundColor: 'rgba(255,255,255, 0.0)', width: 255, marginLeft: 20, marginRight: 20, borderColor: '#fff4', borderWidth: 2, paddingLeft: 8, paddingRight: 8 }}>
                 </Button>
-                <Image style={styles.settingsImageStyle} source={require('../../img/ic_settings.png')} />
+                <TouchableOpacity onPress={props.optionsPress}>
+                    <View style={styles.optionsViewStyle}>
+                        <Image style={styles.settingsImageStyle} source={require('../../img/ic_options.png')} />
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    textStyle: {
-        fontSize: 26,
-        fontWeight: "bold",
-        textAlignVertical: 'bottom',
-        color: '#ffffff',
-        marginRight: 20
-    },
     viewStyle: {
         justifyContent: 'center',
         backgroundColor: '#304C59',
@@ -38,6 +36,17 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         elevation: 6,
         position: 'relative'
+    },
+    optionsViewStyle: {
+        width: 46,
+        height: 46,
+        marginTop: 12,
+        marginRight: 20,
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        borderColor: "#fff4",
+        borderWidth: 2,
     },
     linearLayout: {
         marginTop: 12,
@@ -55,9 +64,6 @@ const styles = StyleSheet.create({
     settingsImageStyle: {
         width: 42,
         height: 42,
-        marginTop: 12,
-        resizeMode: 'contain',
-        marginRight: 20
     }
 });
 

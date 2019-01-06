@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, SafeAreaView, StyleSheet, Text, Image } from 'react-native';
-import { Answer, Button } from './common';
+import { View, SafeAreaView, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { Answer, PopupBottom } from './common';
 
 const buttonText1 = (
     <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
-        Bereichübersicht
+        Optionen
     </Text>)
 
 const buttonText2 = (
@@ -14,11 +14,20 @@ const buttonText2 = (
     </Text>)
 
 class QuestionScene extends Component {
+    constructor(props) {
+        super(props);
+        this.toogleModal = this.toogleModal.bind(this);
+    }
+
+    toogleModal() {
+        this.refs.popupBottom.showAddModal();
+    }
+
     render() {
         return (
             <View style={{ flexDirection: 'column', flex: 1 }}>
                 <SafeAreaView>
-                    <View style={{ height: 200 }}>
+                    <View style={{ height: 180 }}>
                         <View style={styles.linearLayout}>
                             <Text style={styles.questionTextHeader}>
                                 3.5 Frage 9
@@ -36,7 +45,7 @@ class QuestionScene extends Component {
                         Antworten
                     </Text>
                     <Answer>
-                        Zweckmässige Schutzbekleidung ist neben einer vorrauschauen den Fahrweise der wichtigste Schutz.
+                        Zweckmässige Schutzbekleidung ist neben einer vorrauschauenden Fahrweise der wichtigste Schutz.
                     </Answer>
                     <Answer>
                         2. Die Alzheimer'sche Krankheiten
@@ -46,16 +55,31 @@ class QuestionScene extends Component {
                     </Answer>
                     <View style={styles.bottom}>
                         <View style={styles.linearLayout}>
-                            <Button
-                                children={buttonText1}
-                                style={{ backgroundColor: 'rgba(255,255,255, 0.0)', marginLeft: 20, marginRight: 20, borderColor: '#fff4', borderWidth: 2, paddingLeft: 20, paddingRight: 20 }}>
-                            </Button>
-                            <Button
-                                children={buttonText2}
-                                style={{ backgroundColor: 'rgba(255,255,255, 0.0)', marginLeft: 20, marginRight: 20, borderColor: '#fff4', borderWidth: 2, paddingLeft: 20, paddingRight: 20 }}>
-                            </Button>
+                            <TouchableOpacity style={styles.buttonStyle} onPress={() => this.toogleModal()}>
+                                <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
+                                    Optionen
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{
+                                flex: 1,
+                                backgroundColor: 'rgba(255,255,255, 0.0)',
+                                borderColor: '#fff4',
+                                marginTop: 12,
+                                alignItems: "center",
+                                marginLeft: 12,
+                                borderWidth: 2,
+                                paddingLeft: 24,
+                                paddingRight: 24
+                            }} onPress={() => this.toogleModal()}>
+                                <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
+                                    Weiter
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
+                    <PopupBottom ref={'popupBottom'}>
+
+                    </PopupBottom>
                 </View>
             </View>
         );
@@ -76,8 +100,18 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         elevation: 6
     },
+    buttonStyle: {
+        backgroundColor: 'rgba(255,255,255, 0.0)',
+        borderColor: '#fff4',
+        marginTop: 12,
+        borderWidth: 2,
+        paddingLeft: 24,
+        paddingRight: 24
+    },
     linearLayout: {
         marginTop: 12,
+        marginLeft: 20,
+        marginRight: 20,
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: 'space-between'
@@ -85,14 +119,10 @@ const styles = StyleSheet.create({
     bottom: {
         flex: 1,
         justifyContent: 'flex-end',
-        alignItems: "center",
-        marginLeft: 18,
-        marginRight: 18,
         marginBottom: 36
     },
     questionTextHeader: {
         fontSize: 30,
-        marginLeft: 20,
         fontWeight: "bold",
         color: '#304C59'
     },
@@ -112,7 +142,6 @@ const styles = StyleSheet.create({
     imageStyle: {
         resizeMode: 'center',
         height: 45,
-        marginRight: 20,
         width: 100
     }
 });
