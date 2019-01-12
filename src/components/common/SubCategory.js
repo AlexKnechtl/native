@@ -16,7 +16,7 @@ const SubCategory = (props) => {
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={styles.textStyle}>45% abgeschlossen</Text>
-                        <Progress.Bar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#304C59' />
+                        <Progress.Bar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#93A9AF' borderWidth={0} borderRadius={0} />
                     </View>
                     <View style={{ flex: 1, marginTop: 6, alignItems: 'center', justifyContent: 'center' }}>
                         <ProgressCircle
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#304C59",
         marginLeft: 12,
         marginRight: 12,
-        marginTop: 12
+        marginTop: 12,
+        paddingBottom: 2
     },
     titleStyle: {
         backgroundColor: '#fff4',

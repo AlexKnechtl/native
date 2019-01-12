@@ -63,7 +63,7 @@ class CategoryInfoScene extends Component {
                                 Fortschritt Lernvorgang
                             </Text>
                             <View style={{ marginLeft: 20, marginRight: 20, flexDirection: "row" }}>
-                                <Progress.Bar progress={0.72} height={30.2} width={0} style={{ width: "82%" }} color={'#58D980'} unfilledColor='#DEEBE1' />
+                                <Progress.Bar progress={0.72} height={32.4} width={0} style={{ width: "82%" }} color={'#58D980'} unfilledColor='#DEEBE1' borderWidth={0} borderRadius={0} />
                                 <Text style={styles.percentTextStyle}>72%</Text>
                             </View>
                         </View>
@@ -72,7 +72,7 @@ class CategoryInfoScene extends Component {
                                 Erfolgschance
                             </Text>
                             <View style={{ marginLeft: 20, marginRight: 20, flexDirection: "row" }}>
-                                <Progress.Bar progress={0.36} height={30.2} width={0} style={{ width: "82%" }} color={'#58ACD9'} unfilledColor='#DEEBE1' />
+                                <Progress.Bar progress={0.36} height={32.4} width={0} style={{ width: "82%" }} color={'#58ACD9'} unfilledColor='#DEEBE1' borderWidth={0} borderRadius={0} />
                                 <Text style={styles.percentTextStyle}>36%</Text>
                             </View>
                         </View>
