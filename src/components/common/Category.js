@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Progress from 'react-native-progress';
+import ProgressBar from 'react-native-progress/Bar';
 import ProgressCircle from 'react-native-progress-circle'
 import { StyleSheet, ImageBackground, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -22,18 +22,18 @@ const Category = (props) => {
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
                                 <Text style={styles.textStyle}>45% abgeschlossen</Text>
-                                <Progress.Bar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#304C59' />
+                                <ProgressBar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#304C59' />
                                 <Text style={styles.textStyle}>3 Fragen falsch beantwortet</Text>
                             </View>
                             <View style={{ flex: 1, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
                                 <ProgressCircle
-                                    percent={30}
+                                    percent={45}
                                     radius={28}
                                     borderWidth={4}
                                     color="#fff"
-                                    shadowColor="#f00"
+                                    shadowColor="#93A9AF"
                                     bgColor="#304C59">
-                                    <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>{'30%'}</Text>
+                                    <Text style={{ fontSize: 16, fontWeight: "bold", color: "#fff" }}>{'45%'}</Text>
                                 </ProgressCircle>
                                 <Text style={{ fontSize: 14, margin: 3, color: "#fff" }}>Erfolgschance</Text>
                             </View>

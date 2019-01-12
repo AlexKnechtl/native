@@ -21,14 +21,14 @@ const SubCategory = (props) => {
                     <View style={{ flex: 1, marginTop: 6, alignItems: 'center', justifyContent: 'center' }}>
                         <ProgressCircle
                             percent={30}
-                            radius={24}
-                            borderWidth={3}
+                            radius={26}
+                            borderWidth={4}
                             color="#fff"
-                            shadowColor="#f00"
+                            shadowColor="#93A9AF"
                             bgColor="#304C59">
                             <Text style={{ fontSize: 14, fontWeight: "bold", color: "#fff" }}>{'30%'}</Text>
                         </ProgressCircle>
-                        <Text style={{ fontSize: 12, margin: 3, color: "#fff" }}>Erfolgschance</Text>
+                        <Text style={{ fontSize: 12, margin: 2, color: "#fff" }}>Erfolgschance</Text>
                     </View>
                 </View>
             </View>

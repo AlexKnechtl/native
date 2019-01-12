@@ -3,8 +3,6 @@ import { Text, StyleSheet, Dimensions, TouchableOpacity, View } from 'react-nati
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
 
-var screen = Dimensions.get("window");
-
 export default class PopupCenter extends Component {
     constructor(props) {
         super(props);

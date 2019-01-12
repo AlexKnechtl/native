@@ -10,17 +10,19 @@ const MainHeader = (props) => {
                 <Image style={styles.imageStyle} source={require('../../img/logo_wko.png')} />
                 {props.children}
             </View>
-            <View style={styles.linearLayout}>
-                <Button
-                    onPress={props.onPressButton}
-                    children={props.buttonText}
-                    style={{ backgroundColor: 'rgba(255,255,255, 0.0)', width: 255, marginLeft: 20, marginRight: 20, borderColor: '#fff4', borderWidth: 2, paddingLeft: 8, paddingRight: 8 }}>
-                </Button>
-                <TouchableOpacity onPress={props.optionsPress}>
-                    <View style={styles.optionsViewStyle}>
-                        <Image style={styles.settingsImageStyle} source={require('../../img/ic_options.png')} />
-                    </View>
-                </TouchableOpacity>
+            <View style={styles.bottom}>
+                <View style={styles.linearLayout2}>
+                    <Button
+                        onPress={props.onPressButton}
+                        children={props.buttonText}
+                        style={{ backgroundColor: 'rgba(255,255,255, 0.0)', width: 255, marginLeft: 20, marginRight: 20, borderColor: '#fff4', borderWidth: 2, paddingLeft: 8, paddingRight: 8 }}>
+                    </Button>
+                    <TouchableOpacity onPress={props.optionsPress}>
+                        <View style={styles.optionsViewStyle}>
+                            <Image style={styles.settingsImageStyle} source={require('../../img/ic_options.png')} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#304C59',
         shadowColor: '#000',
-        height: 150,
+        height: 140,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.2,
         elevation: 6,
@@ -48,9 +50,19 @@ const styles = StyleSheet.create({
         borderColor: "#fff4",
         borderWidth: 2,
     },
-    linearLayout: {
+    bottom: {
         marginTop: 12,
-        marginBottom: 8,
+        flex: 1,
+        justifyContent: "flex-end"
+    },
+    linearLayout: {
+        marginTop: 14,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    linearLayout2: {
+        marginBottom: 12,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'

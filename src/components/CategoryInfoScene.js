@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, StatusBar, View, Text, Image } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Dimensions, StatusBar, View, Text, Image } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { MainHeader } from './common';
 import { Actions } from 'react-native-router-flux';
 import { ActionButton, PopupCenter } from './common';
+
+var screen = Dimensions.get("window");
 
 const icon_pdf = (<Image style={{ width: 32, height: 32, marginLeft: 11, marginRight: 9 }} source={require('../img/ic_pdf.png')} />)
 const icon_wrong_questions = (<Image style={{ width: 32, height: 32, marginLeft: 8, marginRight: 12 }} source={require('../img/ic_wrong_questions.png')} />)
@@ -54,7 +56,7 @@ class CategoryInfoScene extends Component {
                     resizeMode='cover'>
                     <SafeAreaView>
                         <Text style={styles.titleTextStyle}>
-                            1.2 Schadenersatzrecht
+                            1.2 Grundzüge des bürgerlichen Rechts
                         </Text>
                         <View style={{ marginTop: 12 }}>
                             <Text style={styles.statisticTextStyle}>
@@ -117,16 +119,17 @@ class CategoryInfoScene extends Component {
 
 const styles = StyleSheet.create({
     titleTextStyle: {
-        fontSize: 18,
-        fontWeight: "bold",
-        marginTop: 12,
-        marginBottom: 12,
-        color: "#304C59",
+        fontSize: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginTop: 8,
+        width: screen.width,
         textAlign: "center",
-        width: "100%"
+        fontWeight: "bold",
+        color: "#304C59",
     },
     statisticTextStyle: {
-        fontSize: 20,
+        fontSize: 18,
         marginLeft: 20,
         marginBottom: 4,
         fontWeight: "bold",
