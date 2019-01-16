@@ -8,7 +8,7 @@ import QuestionScene from './components/QuestionScene';
 import CategoryScene from './components/CategoryScene';
 import CategoryInfoScene from './components/CategoryInfoScene';
 
-const RouterComponent = () => {
+export default RouterComponent = () => {
     return (
         <Router navigationBarStyle={{ backgroundColor: '#304C59' }} titleStyle={styles.navTitle} >
             <Stack key="root" statusBarStyle="light-content" hideNavBar>
@@ -42,5 +42,3 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 });
-
-export default RouterComponent;

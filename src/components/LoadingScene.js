@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { SafeAreaView, Text, StyleSheet, ActivityIndicator, ImageBackground, View, Image, StatusBar } from 'react-native';
-import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import firebase from "firebase";
+import { signInWithoutPasswordAction } from 'core';
+
 
 class LoadingScene extends Component {
     componentWillMount() {
-        const { user } = firebase.auth();
+        // const { user } = firebase.auth();
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                Actions.main();
-            } else {
-                Actions.login();
-            }
-        });
+        // firebase.auth().onAuthStateChanged((user) => {
+        //     if (user) {
+        //         Actions.main();
+        //     } else {
+        //         Actions.login();
+        //     }
+        // });
+        // this.props.DispatchSignIn();
+        // //if(!this.props.loading)
+        // this.props.user ? Actions.main() : 
+        // Actions.login();
     }
 
     render() {
@@ -103,4 +110,13 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoadingScene;
+const mapStateToProps = state => ({
+    user: state.auth.user,
+    loading: state.auth.loading,
+});
+
+const mapDispatchToProps = {
+    DispatchSignIn: signInWithoutPasswordAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoadingScene);

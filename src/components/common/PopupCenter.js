@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, Dimensions, TouchableOpacity, View } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
 
 var screen = Dimensions.get("window");
 
-export default class PopupCenter extends Component {
+class PopupCenter extends Component {
     constructor(props) {
         super(props);
     }
@@ -16,6 +15,7 @@ export default class PopupCenter extends Component {
 
     onLogoutPress() {
         //Logout Function
+        this.props.logOut();
     }
 
     onModuleChangePress() {
@@ -118,4 +118,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export { PopupCenter };
+export default PopupCenter;
+export {PopupCenter};
