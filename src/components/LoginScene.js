@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, Image, StatusBar, SafeAreaView, ImageBackground } from 'react-native';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+//import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Input, Button, Spinner } from './common';
+import { signInAction } from 'core';
 
 const userIcon = (<Image style={{ width: 28, height: 28 }} source={require('../img/ic_user.png')} />)
 const lockIcon = (<Image style={{ width: 28, height: 28 }} source={require('../img/ic_password.png')} />)
@@ -13,21 +14,29 @@ const buttonText = (
     </Text>)
 
 class LoginScene extends Component {
+    state = {
+        email: "",
+        password: ""
+    };
     onEmailChange(text) {
-        this.props.emailChanged(text);
+        this.setState({email: text});
     }
 
     onPasswordChange(text) {
-        this.props.passwordChanged(text);
+        this.setState({password: text});
     }
 
     onButtonPress() {
-        const { email, password } = this.props;
-        this.props.loginUser({ email, password });
+        console.log("Before Login");
+        
+        this.props.loginUser(this.state);
+        console.log("After Loginpress");
     }
 
     renderError() {
-        if (this.props.error) {
+        console.log(`renderError(${this.props.error})`);
+        
+        if (this.props.error && this.props.error!="") {
             return (
                 <View style={{ marginTop: 8 }} >
                     <Text style={styles.errorTextStyle}>
@@ -38,11 +47,13 @@ class LoginScene extends Component {
         }
     }
 
-    renderSpinner() {
-        if (this.props.loading) {
-            return <Spinner size="large" />;
-        }
-    }
+    // renderSpinner() {
+    //     // console.log(`renderSpinner(${this.props.loading})`);
+        
+    //     // if (this.props.loading) {
+    //     //     return <Spinner size="large" />;
+    //     // }
+    // }
 
     render() {
         return (
@@ -74,14 +85,14 @@ class LoginScene extends Component {
                             children={userIcon}
                             placeholderText="Username"
                             onChangeText={this.onEmailChange.bind(this)}
-                            value={this.props.email}
+                            value={this.state.email}
                         />
                         <Input
                             children={lockIcon}
                             secureTextEntry
                             placeholderText="Passwort"
                             onChangeText={this.onPasswordChange.bind(this)}
-                            value={this.props.password}
+                            value={this.state.password}
                         />
                         <Button children={buttonText}
                             onPress={this.onButtonPress.bind(this)}>
@@ -89,7 +100,7 @@ class LoginScene extends Component {
                     </View>
                     {this.renderError()}
 
-                    {this.renderSpinner()}
+                    {/* {this.renderSpinner()} */}
                 </SafeAreaView>
             </ImageBackground>
         );
@@ -147,15 +158,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => {
-    return {
-        email: state.auth.email,
-        password: state.auth.password,
+const mapStateToProps = state => ({
         error: state.auth.error,
         loading: state.auth.loading
-    };
+    });
+
+const mapDispatchToProps = {
+    loginUser: signInAction,
 };
 
-export default connect(mapStateToProps, {
-    emailChanged, passwordChanged, loginUser
-})(LoginScene); 
+export default connect(mapStateToProps, mapDispatchToProps,)(LoginScene); 
