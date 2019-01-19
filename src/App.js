@@ -21,7 +21,7 @@ class App extends Component {
     }
     selectView =()=>{
         var { loading, user} = this.store.getState().auth;
-            user ? Actions.main() : Actions.auth();
+            user ? Actions.main() : Actions.login();
             loading ? Actions.loading() : Actions.login();
     }
     store = configureStore();

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, Dimensions, TouchableOpacity, View, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modalbox';
 
 var screen = Dimensions.get("window");
@@ -14,7 +15,7 @@ export default class PopupBottom extends Component {
     }
 
     onLogoutPress() {
-
+        Actions.home();
     }
 
     render() {
@@ -25,19 +26,21 @@ export default class PopupBottom extends Component {
                 position='bottom'
                 backdrop={true}>
                 <View style={styles.linearLayout}>
-                    <TouchableOpacity style={{
-                        flex: 1,
-                        backgroundColor: 'rgba(255,255,255, 0.0)',
-                        borderColor: '#fff7',
-                        alignItems: "center",
-                        marginRight: 12,
-                        borderWidth: 2
-                    }} onPress={() => this.toogleModal()}>
+                    <TouchableOpacity
+                        onPress={this.onLogoutPress.bind(this)}
+                        style={{
+                            flex: 1,
+                            backgroundColor: 'rgba(255,255,255, 0.0)',
+                            borderColor: '#fff7',
+                            alignItems: "center",
+                            marginRight: 12,
+                            borderWidth: 2
+                        }}>
                         <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
                             Zurück
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonStyle} onPress={() => this.toogleModal()}>
+                    <TouchableOpacity style={styles.buttonStyle} >
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Image style={{ width: 24, height: 30, marginRight: 12 }} source={require('../../img/ic_pdf_color.png')} />
                             <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>

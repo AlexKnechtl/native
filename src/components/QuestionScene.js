@@ -77,7 +77,7 @@ class QuestionScene extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <PopupBottom ref={'popupBottom'}>
+                    <PopupBottom ref={'popupBottom'} >
 
                     </PopupBottom>
                 </View>
