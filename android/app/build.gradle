@@ -119,6 +119,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            aaptOptions.cruncherEnabled = false
         }
     }
     // applicationVariants are e.g. debug, release

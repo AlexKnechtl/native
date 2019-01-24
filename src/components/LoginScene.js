@@ -24,6 +24,10 @@ class LoginScene extends Component {
         email: "",
         password: ""
     };
+    // state = {
+    //     email: "fmoretti981@gmail.com",
+    //     password: "Passw0rd"
+    // };
     onEmailChange(text) {
         this.setState({ email: text });
     }
