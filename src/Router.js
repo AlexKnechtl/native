@@ -16,7 +16,7 @@ export default RouterComponent = () => {
                 <Scene key="auth" navigationBarStyle={{ backgroundColor: '#304C59' }} hideNavBar type={ActionConst.REPLACE}>
                     <Scene key='loading' component={LoadingScene} />   
                     <Scene key="login" component={LoginScene} />
-                </Stack>
+                </Scene>
                 <Stack key="main" hideNavBar cardStyle={{backgroundColor: '#FFF'}}>
                     <Scene key="home" component={HomeScene} />
                     <Scene key="category" component={CategoryScene} />
