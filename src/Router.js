@@ -1,19 +1,20 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Scene, Router, Stack } from 'react-native-router-flux';
+import { Scene, Router, Stack, ActionConst, Actions } from 'react-native-router-flux';
 import LoginScene from './components/LoginScene';
 import HomeScene from './components/HomeScene';
 import LoadingScene from './components/LoadingScene';
 import QuestionScene from './components/QuestionScene';
 import CategoryScene from './components/CategoryScene';
 import CategoryInfoScene from './components/CategoryInfoScene';
+import { LOGIN_SUCCESS, SIGNED_OUT, START_SIGN_IN, START_SIGN_IN_WITHOUT_CREDENTIAL, LOGIN_FAILED } from 'core/lib/adapters/redux/actions/types';
 
 export default RouterComponent = () => {
     return (
         <Router navigationBarStyle={{ backgroundColor: '#304C59' }} titleStyle={styles.navTitle} >
-            <Stack key="root" statusBarStyle="light-content" hideNavBar>
-                <Stack key="auth" navigationBarStyle={{ backgroundColor: '#304C59' }} hideNavBar>
-                    <Scene key='loading' component={LoadingScene} />
+            <Scene key="root" statusBarStyle="light-content" hideNavBar >
+                <Scene key="auth" navigationBarStyle={{ backgroundColor: '#304C59' }} hideNavBar type={ActionConst.REPLACE}>
+                    <Scene key='loading' component={LoadingScene} />   
                     <Scene key="login" component={LoginScene} />
                 </Stack>
                 <Stack key="main" hideNavBar cardStyle={{backgroundColor: '#FFF'}}>
@@ -22,8 +23,8 @@ export default RouterComponent = () => {
                     <Scene key="info" component={CategoryInfoScene} />
                     <Scene key="question" component={QuestionScene} />
                 </Stack>
-            </Stack>
-        </Router >
+            </Scene>
+        </Router>
     );
 };
 
@@ -42,3 +43,23 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 });
+
+
+export const sceneReducer = (state = {}, {type}) => {
+    console.log(`SceneReducer" ${type}`);
+    if(!Actions.main) return state;
+    switch(type){
+        case LOGIN_SUCCESS: Actions.main(); Actions.home();
+            return state;
+        case LOGIN_FAILED: Actions.auth(); Actions.login();
+            return state;
+        case SIGNED_OUT: Actions.auth(); Actions.login();
+            return state;
+        case START_SIGN_IN : Actions.auth(); Actions.loading();
+            return state;
+        case START_SIGN_IN_WITHOUT_CREDENTIAL : Actions.auth(); Actions.loading();
+            return state;
+        default:
+            return state;
+    }    
+}

@@ -40,9 +40,9 @@ class LoginScene extends Component {
     }
 
     renderError() {
-        console.log(`renderError(${this.props.error})`);
-
-        if (this.props.error && this.props.error != "") {
+        // console.log(`renderError(${this.props.error})`);
+        
+        if (this.props.error && this.props.error!="") {
             return (
                 <View style={{ marginTop: 8 }} >
                     <Text style={styles.errorTextStyle}>

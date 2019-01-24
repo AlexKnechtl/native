@@ -7,22 +7,6 @@ import { signInWithoutPasswordAction } from 'core';
 
 
 class LoadingScene extends Component {
-    componentWillMount() {
-        // const { user } = firebase.auth();
-
-        // firebase.auth().onAuthStateChanged((user) => {
-        //     if (user) {
-        //         Actions.main();
-        //     } else {
-        //         Actions.login();
-        //     }
-        // });
-        // this.props.DispatchSignIn();
-        // //if(!this.props.loading)
-        // this.props.user ? Actions.main() : 
-        // Actions.login();
-    }
-
     render() {
         return (
             <ImageBackground
