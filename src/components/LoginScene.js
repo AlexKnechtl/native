@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, Image, StatusBar, SafeAreaView, ImageBackground } from 'react-native';
+import { View, Text, Keyboard, StyleSheet, Image, StatusBar, SafeAreaView, ImageBackground, TouchableWithoutFeedback } from 'react-native';
 //import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Input, Button, Spinner } from './common';
 import { signInAction } from 'core';
 
 const userIcon = (<Image style={{ width: 28, height: 28 }} source={require('../img/ic_user.png')} />)
 const lockIcon = (<Image style={{ width: 28, height: 28 }} source={require('../img/ic_password.png')} />)
+
+const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        {children}
+    </TouchableWithoutFeedback>
+)
 
 const buttonText = (
     <Text style={{ alignSelf: 'center', color: '#304C59', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
@@ -19,24 +25,24 @@ class LoginScene extends Component {
         password: ""
     };
     onEmailChange(text) {
-        this.setState({email: text});
+        this.setState({ email: text });
     }
 
     onPasswordChange(text) {
-        this.setState({password: text});
+        this.setState({ password: text });
     }
 
     onButtonPress() {
         console.log("Before Login");
-        
+
         this.props.loginUser(this.state);
         console.log("After Loginpress");
     }
 
     renderError() {
         console.log(`renderError(${this.props.error})`);
-        
-        if (this.props.error && this.props.error!="") {
+
+        if (this.props.error && this.props.error != "") {
             return (
                 <View style={{ marginTop: 8 }} >
                     <Text style={styles.errorTextStyle}>
@@ -49,7 +55,7 @@ class LoginScene extends Component {
 
     // renderSpinner() {
     //     // console.log(`renderSpinner(${this.props.loading})`);
-        
+
     //     // if (this.props.loading) {
     //     //     return <Spinner size="large" />;
     //     // }
@@ -67,41 +73,42 @@ class LoginScene extends Component {
                         barStyle="light-content"
                     />
                 </SafeAreaView >
-                <SafeAreaView style={{ alignItems: 'center' }}>
-                    <Image style={styles.logoBig} source={require('../img/logo_wko.png')} />
-                    <View style={styles.rectangleStyle}>
-                        <Text style={styles.headerText}>
-                            Versicherungsagent
+                <DismissKeyboard>
+                    <SafeAreaView style={{ alignItems: 'center' }}>
+                        <Image style={styles.logoBig} source={require('../img/logo_wko.png')} />
+                        <View style={styles.rectangleStyle}>
+                            <Text style={styles.headerText}>
+                                Versicherungsagent
                     </Text>
-                    </View>
-                    <View style={styles.rectangleStyle}>
-                        <Image style={styles.logoSmall} source={require('../img/seek_innovation_logo.png')} />
-                        <Text style={styles.smallHeaderText}>
-                            Powered by SeekInnovation
+                        </View>
+                        <View style={styles.rectangleStyle}>
+                            <Image style={styles.logoSmall} source={require('../img/seek_innovation_logo.png')} />
+                            <Text style={styles.smallHeaderText}>
+                                Powered by SeekInnovation
                     </Text>
-                    </View>
-                    <View style={{ marginTop: 42 }}>
-                        <Input
-                            children={userIcon}
-                            placeholderText="Username"
-                            onChangeText={this.onEmailChange.bind(this)}
-                            value={this.state.email}
-                        />
-                        <Input
-                            children={lockIcon}
-                            secureTextEntry
-                            placeholderText="Passwort"
-                            onChangeText={this.onPasswordChange.bind(this)}
-                            value={this.state.password}
-                        />
-                        <Button children={buttonText}
-                            onPress={this.onButtonPress.bind(this)}>
-                        </Button>
-                    </View>
-                    {this.renderError()}
-
-                    {/* {this.renderSpinner()} */}
-                </SafeAreaView>
+                        </View>
+                        <View style={{ marginTop: 42 }}>
+                            <Input
+                                children={userIcon}
+                                placeholderText="Username"
+                                onChangeText={this.onEmailChange.bind(this)}
+                                value={this.state.email}
+                            />
+                            <Input
+                                children={lockIcon}
+                                secureTextEntry
+                                placeholderText="Passwort"
+                                onChangeText={this.onPasswordChange.bind(this)}
+                                value={this.state.password}
+                            />
+                            <Button children={buttonText}
+                                onPress={this.onButtonPress.bind(this)}>
+                            </Button>
+                        </View>
+                        {this.renderError()}
+                        {/* {this.renderSpinner()} */}
+                    </SafeAreaView>
+                </DismissKeyboard>
             </ImageBackground>
         );
     }
@@ -141,7 +148,7 @@ const styles = StyleSheet.create({
         borderColor: '#fff4'
     },
     logoBig: {
-        marginTop: 50,
+        marginTop: 65,
         resizeMode: "contain",
         height: 65,
         width: 210
@@ -159,12 +166,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-        error: state.auth.error,
-        loading: state.auth.loading
-    });
+    error: state.auth.error,
+    loading: state.auth.loading
+});
 
 const mapDispatchToProps = {
     loginUser: signInAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps,)(LoginScene); 
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScene); 

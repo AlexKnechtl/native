@@ -3,7 +3,6 @@ import { SafeAreaView, ScrollView, StyleSheet, StatusBar, View, Text } from 'rea
 import { MainHeader, Category, PopupCenter } from './common';
 import { signOutAction } from "core";
 import { connect } from "react-redux";
-import { Actions } from 'react-native-router-flux';
 
 const btnText = (
     <Text style={{ alignSelf: 'center', fontWeight: "bold", color: '#fff', fontSize: 20, paddingTop: 8, paddingBottom: 10 }}>

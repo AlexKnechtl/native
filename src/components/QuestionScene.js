@@ -3,20 +3,34 @@ import { connect } from 'react-redux';
 import { View, SafeAreaView, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { Answer, PopupBottom } from './common';
 
-const buttonText1 = (
-    <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
-        Optionen
-    </Text>)
-
-const buttonText2 = (
-    <Text style={{ color: '#fff', fontSize: 20, paddingTop: 10, paddingBottom: 10 }}>
-        Weiter
-    </Text>)
-
 class QuestionScene extends Component {
+    state = {
+        answer1Clicked: false,
+        answer2Clicked: false,
+        answer3Clicked: false
+    }
+
     constructor(props) {
         super(props);
         this.toogleModal = this.toogleModal.bind(this);
+    }
+
+    answer1Click() {
+        this.setState({ answer1Clicked: false });
+        this.setState({ answer2Clicked: true });
+        this.setState({ answer3Clicked: true });
+    }
+
+    answer2Click() {
+        this.setState({ answer2Clicked: false });
+        this.setState({ answer1Clicked: true });
+        this.setState({ answer3Clicked: true });
+    }
+
+    answer3Click() {
+        this.setState({ answer3Clicked: false });
+        this.setState({ answer1Clicked: true });
+        this.setState({ answer2Clicked: true });
     }
 
     toogleModal() {
@@ -24,6 +38,12 @@ class QuestionScene extends Component {
     }
 
     render() {
+        const { answer1Clicked, answer2Clicked, answer3Clicked } = this.state;
+
+        const background1 = answer1Clicked ? "#fff9" : "white";
+        const background2 = answer2Clicked ? "#fff9" : "white";
+        const background3 = answer3Clicked ? "#fff9" : "white";
+
         return (
             <View style={{ flexDirection: 'column', flex: 1 }}>
                 <SafeAreaView>
@@ -44,15 +64,33 @@ class QuestionScene extends Component {
                     <Text style={styles.answerHeaderText}>
                         Antworten
                     </Text>
-                    <Answer>
-                        Zweckmässige Schutzbekleidung ist neben einer vorrauschauenden Fahrweise der wichtigste Schutz.
-                    </Answer>
-                    <Answer>
-                        2. Die Alzheimer'sche Krankheiten
-                    </Answer>
-                    <Answer>
-                        3. Wundstarrkrampf und Tollwut
-                    </Answer>
+                    <TouchableOpacity
+                        onPress={this.answer1Click.bind(this)}
+                        style={{
+                            flexDirection: 'row', minHeight: 90, alignItems: 'center', marginHorizontal: 20, marginTop: 20, backgroundColor: background1
+                        }}>
+                        <Text style={{ flex: 1, alignSelf: 'center', color: "#304C59", fontSize: 14, padding: 8 }}>
+                            1. Zweckmässige Schutzbekleidung ist neben einer vorrauschauenden Fahrweise der wichtigste Schutz.
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.answer2Click.bind(this)}
+                        style={{
+                            flexDirection: 'row', minHeight: 90, alignItems: 'center', marginHorizontal: 20, marginTop: 20, backgroundColor: background2
+                        }}>
+                        <Text style={{ flex: 1, alignSelf: 'center', color: "#304C59", fontSize: 14, padding: 8 }}>
+                            2. Die Alzheimer'sche Krankheiten
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.answer3Click.bind(this)}
+                        style={{
+                            flexDirection: 'row', minHeight: 90, alignItems: 'center', marginHorizontal: 20, marginTop: 20, backgroundColor: background3
+                        }}>
+                        <Text style={{ flex: 1, alignSelf: 'center', color: "#304C59", fontSize: 14, padding: 8 }}>
+                            3. Wundstarrkrampf und Tollwut
+                        </Text>
+                    </TouchableOpacity>
                     <View style={styles.bottom}>
                         <View style={styles.linearLayout}>
                             <TouchableOpacity style={styles.buttonStyle} onPress={() => this.toogleModal()}>
@@ -107,6 +145,15 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         paddingLeft: 24,
         paddingRight: 24
+    },
+    answerButtonStyle: {
+        flexDirection: 'row',
+        minHeight: 90,
+        alignItems: 'center',
+        marginRight: 20,
+        marginLeft: 20,
+        marginTop: 20,
+        backgroundColor: '#ffffff',
     },
     linearLayout: {
         marginTop: 12,
