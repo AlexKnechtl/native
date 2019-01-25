@@ -44,7 +44,6 @@ class LoadingScene extends Component {
 const styles = StyleSheet.create({
     containerStyle: {
         flex: 1,
-        backgroundColor: '#ffffff'
     },
     rectangleStyle: {
         justifyContent: 'center',
