@@ -55,8 +55,7 @@ class HomeScene extends Component {
                     style={styles.containerStyle}
                     resizeMode='cover'>
                     <SafeAreaView>
-                        <Category imageUri={picture1} titleText="1 Allgemeine Rechtskunde" />
-                        <Category imageUri={picture2} titleText="2 Sachversicherungen" />
+                        {this.props.modules.map((module) => <Category key={module.title} imageUri={{uri: module.imageUrl}} titleText={module.title} />)}
                     </SafeAreaView>
                 </ScrollView>
                 <PopupCenter ref={'popupCenter'} logOut={()=> { this.props.dispatchLogOut(); }}>
@@ -78,4 +77,8 @@ const mapDispatchToProps = {
     dispatchLogOut: signOutAction,
 };
 
-export default connect(()=>({}), mapDispatchToProps)(HomeScene);
+const mapStateToProps = state => ({
+    modules: state.modules.modules,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScene);
