@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, SafeAreaView, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { Answer, PopupBottom } from './common';
+import { updateCurrentQuestion, getNextQuestionAction } from 'core';
 
 class QuestionScene extends Component {
     state = {
@@ -38,6 +39,9 @@ class QuestionScene extends Component {
     }
 
     render() {
+        if(!this.props.currentQuestion) this.props.dispatchGetNextQuestion();
+        console.log(this.props.currentQuestion);
+        
         const { answer1Clicked, answer2Clicked, answer3Clicked } = this.state;
 
         const background1 = answer1Clicked ? "#fff9" : "white";
@@ -55,7 +59,7 @@ class QuestionScene extends Component {
                             <Image style={styles.imageStyle} source={require('../img/logo_wko.png')} />
                         </View>
                         <Text style={styles.questionText}>
-                            Welche der nachstehenden angeführten Krankheiten ist/sind im Rahmen der privaten Unfallversicherung mitversichert?
+                            Welche5 der nachstehenden angeführten Krankheiten ist/sind im Rahmen der privaten Unfallversicherung mitversichert?
                         </Text>
                     </View>
                 </SafeAreaView>
@@ -193,4 +197,15 @@ const styles = StyleSheet.create({
     }
 });
 
-export default QuestionScene;
+// export default QuestionScene;
+
+const mapDispatchToProps = {
+    dispatchUpdateQuestion: updateCurrentQuestion,
+    dispatchGetNextQuestion: getNextQuestionAction
+};
+
+const mapStateToProps = state => ({
+    currentQuestion: state.learning.currentQuestion,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionScene);

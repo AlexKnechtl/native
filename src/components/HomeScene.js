@@ -38,7 +38,7 @@ class HomeScene extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, alignItems: "stretch" }}>
                 <SafeAreaView style={{ backgroundColor: "#304C59" }}>
                     <StatusBar
                         backgroundColor="#304C59"

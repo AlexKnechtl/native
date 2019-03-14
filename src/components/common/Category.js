@@ -19,13 +19,13 @@ const Category = (props) => {
                         <View style={styles.titleStyle}>
                             <Text style={styles.titleTextStyle}>{props.titleText}</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                                 <Text style={styles.textStyle}>45% abgeschlossen</Text>
                                 <ProgressBar progress={0.45} height={12} width={190} color={'#fff'} unfilledColor='#93A9AF' borderWidth={0} borderRadius={0} />
                                 <Text style={styles.textStyle}>3 Fragen falsch beantwortet</Text>
                             </View>
-                            <View style={{ flex: 1, marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={{ marginTop: 8, alignItems: 'center', justifyContent: 'center' }}>
                                 <ProgressCircle
                                     percent={45}
                                     radius={28}
